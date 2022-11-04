@@ -2,14 +2,21 @@ package com.example.calculadoraimc
 
 
 internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
+
+    // Validação para verificar se os campos de texto estiverem vazios.
+    // A falta desse tratamento irá causar crash no app
     if (pesoTxt == "" || alturaTxt == "") {
         return IMCResult(Result.BLANK)
     }
 
+    // Conversão dos valores recebidos como texto para float, para poder realizar o cálculo
     val peso = pesoTxt.toFloat()
     val altura = alturaTxt.toFloat()
+
+    // Cálculo do IMC
     val imc = peso / (altura * altura)
 
+    // Retorna a descrição do nível de acordo com o resultado do cálculo
     if (imc < 16){
         return IMCResult(Result.MAGREZA_III)
     } else if (imc < 17){
